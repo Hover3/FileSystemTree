@@ -12,22 +12,39 @@ type GitHubConfig struct {
 }
 
 type Config struct {
-	GitHub    GitHubConfig
-	DebugMode bool
-	UserRoles []string
-	MaxUsers  int
+	EnableExtensionsFilter bool
+	EnabledExtensions      []string
+	UseSorting             bool
+	SortingIgnoreCase      bool
+
+	EnableColorText        bool
+	UseColorCharsAlignment bool
+	FoldersColor           string
+	FilesColor             string
+	FileStatsColor         string
+	TreeBranchColor        string
+	TreeExpandColor        string
+	TreeCollapseColor      string
+	WarningColor           string
 }
 
 // New returns a new Config struct
 func New() *Config {
 	return &Config{
-		GitHub: GitHubConfig{
-			Username: getEnv("GITHUB_USERNAME", ""),
-			APIKey:   getEnv("GITHUB_API_KEY", ""),
-		},
-		DebugMode: getEnvAsBool("DEBUG_MODE", true),
-		UserRoles: getEnvAsSlice("USER_ROLES", []string{"admin"}, ","),
-		MaxUsers:  getEnvAsInt("MAX_USERS", 1),
+		EnableExtensionsFilter: getEnvAsBool("ENABLE_FILE_EXTENSION_FILTER", false),
+		EnabledExtensions:      getEnvAsSlice("ENABLED_EXTENSIONS", []string{".go", ".md"}, ","),
+		UseSorting:             getEnvAsBool("USE_SORTING", false),
+		SortingIgnoreCase:      getEnvAsBool("SORTING_IGNORE_CASE", false),
+
+		EnableColorText:        getEnvAsBool("ENABLE_COLOR_TEXT", false),
+		UseColorCharsAlignment: getEnvAsBool("USE_COLOR_CHARS_ALIGNMENT", false),
+		FoldersColor:           getEnv("FOLDERS_COLOR", "reset"),
+		FilesColor:             getEnv("FILES_COLOR", "reset"),
+		FileStatsColor:         getEnv("FILE_STATS_COLOR", "reset"),
+		TreeBranchColor:        getEnv("TREE_BRANCH_COLOR", "reset"),
+		TreeExpandColor:        getEnv("TREE_EXPAND_COLOR", "reset"),
+		TreeCollapseColor:      getEnv("TREE_COLLAPSE_COLOR", "reset"),
+		WarningColor:           getEnv("WARNING_COLOR", "reset"),
 	}
 }
 

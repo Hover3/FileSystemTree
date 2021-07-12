@@ -19,13 +19,13 @@ func main() {
 	conf := config.New()
 
 	// Print out environment variables
-	fmt.Println(conf.GitHub.Username)
-	fmt.Println(conf.GitHub.APIKey)
-	fmt.Println(conf.DebugMode)
-	fmt.Println(conf.MaxUsers)
+	//fmt.Println(conf.GitHub.Username)
+	//fmt.Println(conf.GitHub.APIKey)
+	//fmt.Println(conf.DebugMode)
+	//fmt.Println(conf.MaxUsers)
 
 	// Print out each role
-	for _, role := range conf.UserRoles {
+	for _, role := range conf.EnabledExtensions {
 		fmt.Println(role)
 	}
 }
